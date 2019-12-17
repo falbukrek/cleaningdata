@@ -38,7 +38,8 @@ feature_column_types <- strrep("d", nrow(feature_columns))
 ###############################
 
 # read in the test dataset
-test_set <-read_fwf(test_set_file, col_positions = feature_column_positions, col_types = feature_column_types)
+# note: suppressWarnings is used due to some duplicate names in the original feature.txt file
+test_set <-suppressWarnings(read_fwf(test_set_file, col_positions = feature_column_positions, col_types = feature_column_types))
 
 # read in the test labels
 test_labels <- read.delim(test_label_file, header = FALSE, sep = " ", col.names = "id", colClasses = "integer")
@@ -61,7 +62,8 @@ test_set <- test_set %>% mutate(subjectid = test_subjects$id)
 ###############################
 
 # read in the train dataset
-train_set <-read_fwf(train_set_file, col_positions = feature_column_positions, col_types = feature_column_types)
+# note: suppressWarnings is used due to some duplicate names in the original feature.txt file
+train_set <- suppressWarnings(read_fwf(train_set_file, col_positions = feature_column_positions, col_types = feature_column_types))
 
 # read in the train labels
 train_labels <- read.delim(train_label_file, header = FALSE, sep = " ", col.names = "id", colClasses = "integer")
