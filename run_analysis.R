@@ -1,6 +1,7 @@
 # load the necessary libraries
 library(readr)
 library(dplyr)
+library(stringr)
 
 # set up locations of key directories and files
 data_dir <- "UCI HAR Dataset"
@@ -22,7 +23,7 @@ feature_columns <- read.delim(features_file, header = FALSE, sep = " ", col.name
 activity_labels <- read.delim(labels_file, header = FALSE, sep = " ", col.names = c("id", "activityname"))
 
 # since we are working with fixed width files (16 char columns), compute a vector listing all the column positions
-feature_column_positions <- fwf_widths(rep(16, nrow(feature_columns)))
+feature_column_positions <- fwf_widths(rep(16, nrow(feature_columns)), col_names = feature_columns$name)
 
 # all columns are decimals, generate a col_types descriptor
 feature_column_types <- strrep("d", nrow(feature_columns))
@@ -75,7 +76,23 @@ train_set <- train_set %>% mutate(subjectid = train_subjects$id)
 
 
 ###############################
-# Merge the test and train data
+# Merge sets and choose columns
 ###############################
 
+# join the two sets of rows (Step 1 in assignment)
 complete_set <- bind_rows(test_set, train_set)
+
+# select subjectid, activity name and the required measurements (Step 2-4 in assignment)
+requested_measurement_columns <-  str_which(names(complete_set), "mean\\(\\)|std\\(\\)")
+requested_set <- select(complete_set, requested_measurement_columns, subjectid, activityname)
+
+# summarize average of each measurement by subject and activity
+# we rename the measurement columns with a prefix "avg_" in order to be clear that
+# these are the summaries of the original measurements
+summary <- requested_set %>% 
+    group_by(activityname, subjectid) %>% 
+    summarize_all(mean) %>% 
+    rename_at(names(complete_set)[requested_measurement_columns], function(x) { paste("avg_", x, sep = "")})
+
+# write the final file
+write.table(summary, "summary.txt", row.name=FALSE)
