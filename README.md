@@ -2,7 +2,7 @@
 
 In this project we clean up and summarize data from the [Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) into a tidy dataset.
 
-The `[run_analysis.R](./run_analysis.R)` script executes in the following sequence:
+The [run_analysis.R](./run_analysis.R) script executes in the following sequence:
 1. Reads in all the reference data consisting of column names and activity names.
 1. Reads in the test data set, adds test subjects, labels the columns and activity names as appropriate.
 1. Reads in the training data set, adds test subjects, labels the columns and activity names as appropriate.
