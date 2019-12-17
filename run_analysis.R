@@ -16,6 +16,10 @@ train_set_file <- file.path(train_dir, "X_train.txt")
 train_label_file <- file.path(train_dir, "y_train.txt")
 train_subject_file <- file.path(train_dir, "subject_train.txt")
 
+############################### 
+# Process the reference data
+###############################
+
 # read in the names of the feature columns
 feature_columns <- read.delim(features_file, header = FALSE, sep = " ", col.names = c("id", "name"))
 
