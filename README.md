@@ -15,3 +15,6 @@ Instructions and notes:
 * Use `source('run_analysis.R')` to execute the analysis script.
 * To read `summary.txt` back into the environment use `read.table("summary.txt", header = TRUE)`.
 * For details on the contents of summary.txt review the [codebook](./CodeBook.md) provided.
+
+### Acknowledgement:
+Many thanks to David Hood for his [clarifications](https://thoughtfulbloke.wordpress.com/2015/09/09/getting-and-cleaning-the-assignment/) on the assignment's instructions.
