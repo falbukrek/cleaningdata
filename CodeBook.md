@@ -69,6 +69,6 @@
 1. **avg_fBodyBodyGyroJerkMag-mean()**: Average of frequency domain body gyroscope angular velocity jerk motion magnitude means.
 1. **avg_fBodyBodyGyroJerkMag-std()**: Average of frequency domain body gyroscope angular velocity jerk motion magnitude standard deviations.
 
-Variables 3 through 68 are numeric.
+**Variable types**: Variable 1 (activityname) is a factor. Variable 2 (subjectid) is an integer. Variables 3 through 68 are numeric.
 
 The code book for the original data set can be found in the README file of [Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones).
